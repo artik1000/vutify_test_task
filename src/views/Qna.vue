@@ -29,8 +29,7 @@
           </div>
         </div>
       </v-col>
-      <v-col :cols="3" class="d-flex flex-column justify-space-between">
-        <div class="d-flex flex-column">
+      <v-col :cols="3" class="position-relative">
           <v-card class="d-flex flex-column">
             <h3>Регламенты и документы</h3>
             <v-btn class="bg-transparent d-flex flex-row elevation-0 mt-15px gap-6px justify-start pa-0">
@@ -46,18 +45,17 @@
               <p class="download-link__text d-block my-auto">Архив.doc</p>
             </v-btn>
           </v-card>
-          <div class="d-flex flex-column gap-15px mt-40px">
-            <h2
-              class="guide-list"
-              v-for="item in items"
-              :key="item.id"
-              @click="toAccordionElement(item.title)"
-            >
-              {{ item.title }}
-            </h2>
-          </div>
+        <div class="d-flex flex-column gap-15px mt-40px position-sticky" style="top: 40px;">
+          <h2
+            class="guide-list"
+            v-for="item in items"
+            :key="item.id"
+            @click="toAccordionElement(item.title)"
+          >
+            {{ item.title }}
+          </h2>
         </div>
-        <v-btn class="btn-gray rounded-pill button elevation-0 align-self-end bottom-72px">
+        <v-btn class="btn-gray rounded-pill button elevation-0 bottom-72px position-absolute" style="bottom: 0px; right: 0">
           <span class="icon-16px">
             chat_bubble_outline
           </span>
@@ -298,9 +296,6 @@ export default {
 }
 .v-expansion-panel-title__icon{
   color: black !important;
-}
-.v-btn:hover{
-  color: transparent;
 }
 .v-expansion-panel--active{
   border-top: 1px solid #E9E9E9;
