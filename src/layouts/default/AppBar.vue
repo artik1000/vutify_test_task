@@ -23,15 +23,31 @@
         </v-col>
       </v-row>
   </v-container>
-  <v-container height="fit-content" class="px-60px bg-primary d-flex flex-row" fluid>
-    <v-list class="d-flex flex-row bg-transparent w-100 gap-12px" nav tag="nav">
+  <v-container height="fit-content" class="px-60px bg-primary d-flex flex-row" fluid @mouseleave="show = false">
+    <v-list class="d-flex flex-row bg-transparent w-100 gap-12px overflow-visible" nav tag="nav"  @mouseleave="show = false">
       <v-list-item
-        v-for="link in router.getRoutes().filter(route => route.name === 'default')[0].children"
-        :key="link.path"
+        class="position-relative"
+        v-for="(link,id) in router.getRoutes().filter(route => route.name === 'default')[0].children"
+        :key="id"
         :title="link.name"
         :to="router.getRoutes().filter(route => route.name === 'default')[0].path + link.path"
         :class="(link.path === 'trades')?'v-list-item--bordered':''"
-      />
+        @mouseover="showDropdown(link.path)"
+      >
+        <v-card
+          v-if="link.path === 'our_services' && show === true"
+          class="position-absolute mt-25px p13-19px"
+          style="z-index: 9 !important;"
+        >
+          <h2
+            class="dropdown-item"
+            v-for="(item, id) in link.children"
+              :key="id"
+          >
+            {{item.name}}
+          </h2>
+        </v-card>
+      </v-list-item>
     </v-list>
     <v-btn class="my-auto bg-transparent elevation-0 px-12px" color="primary">
       <v-icon dark big>mdi-magnify</v-icon>
@@ -40,17 +56,23 @@
 </template>
 
 <script setup>
-import router from "@/router";
-// console.log(router.getRoutes().filter(route => route.name === 'default')[0].children)
-
-// export default {
-//   data () {
-//     return {
-//     }
-//   },
-//   mounted() {
-//   }
-// }
+import router from "@/router"
+</script>
+<script>
+export default {
+  data () {
+    return {
+      show: false,
+    }
+  },
+  methods: {
+    showDropdown (name){
+      if(name === 'our_services'){
+        this.show = true
+      }
+    }
+  }
+}
 </script>
 <style>
 .v-list-item--bordered{
@@ -133,5 +155,51 @@ import router from "@/router";
 .v-list-item:hover{
   background-color: white;
   color: #3C6EBD;
+}
+.v-card{
+  box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 24px 24px !important;
+}
+.mt-25px{
+  margin-top: 14px !important;
+}
+.overflow-visible{
+  overflow: visible !important;
+}
+.dropdown-item{
+  font-family: 'Arimo' !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 140% !important;
+  /* or 20px */
+
+  display: flex;
+  align-items: center;
+
+  /* Black */
+
+  color: #222222 !important;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  width: 217px !important;
+}
+.dropdown-item:first-of-type{
+  margin-top: 0px;
+}
+.dropdown-item{
+  margin-top: 11px;
+}
+.p13-19px{
+  padding: 13px 19px !important;
+}
+.dropdown-item:hover{
+  color: #3C6EBD !important;
 }
 </style>

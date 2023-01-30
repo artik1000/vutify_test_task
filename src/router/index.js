@@ -26,6 +26,23 @@ const routes = [
       {
         path: 'our_services',
         name: 'Наши услуги',
+        children: [
+          {
+            path: 'arbitrator_or_bid_organizer',
+            name: 'Арбитражному управляющему или Организатору торгов',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "home" */ '@/views/NoExists.vue'),
+          },
+          {
+            path: 'bidder',
+            name: 'Участнику торгов',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "home" */ '@/views/NoExists.vue'),
+          }],
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
