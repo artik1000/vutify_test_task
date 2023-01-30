@@ -29,33 +29,35 @@
           </div>
         </div>
       </v-col>
-      <v-col :cols="3">
-        <v-card class="d-flex flex-column">
-          <h3>Регламенты и документы</h3>
-          <v-btn class="bg-transparent d-flex flex-row elevation-0 mt-15px gap-6px justify-start pa-0">
+      <v-col :cols="3" class="d-flex flex-column justify-space-between">
+        <div class="d-flex flex-column">
+          <v-card class="d-flex flex-column">
+            <h3>Регламенты и документы</h3>
+            <v-btn class="bg-transparent d-flex flex-row elevation-0 mt-15px gap-6px justify-start pa-0">
             <span class="material-icons" style="color: #FF4957">
               picture_as_pdf
             </span>
-            <p class="download-link__text d-block my-auto">Регламент Электронной <br> Площадки ЦДТ.pdf</p>
-          </v-btn>
-          <v-btn class="bg-transparent d-flex flex-row elevation-0 mt-15px gap-6px justify-start pa-0">
+              <p class="download-link__text d-block my-auto">Регламент Электронной <br> Площадки ЦДТ.pdf</p>
+            </v-btn>
+            <v-btn class="bg-transparent d-flex flex-row elevation-0 mt-15px gap-6px justify-start pa-0">
             <span class="material-icons" style="color: #3C6EBD">
               article
             </span>
-            <p class="download-link__text d-block my-auto">Архив.doc</p>
-          </v-btn>
-        </v-card>
-        <div class="d-flex flex-column gap-15px mt-40px">
-          <h2
-            class="guide-list"
-            v-for="item in items"
-            :key="item.id"
-            @click="toAccordionElement(item.title)"
-          >
-            {{ item.title }}
-          </h2>
+              <p class="download-link__text d-block my-auto">Архив.doc</p>
+            </v-btn>
+          </v-card>
+          <div class="d-flex flex-column gap-15px mt-40px">
+            <h2
+              class="guide-list"
+              v-for="item in items"
+              :key="item.id"
+              @click="toAccordionElement(item.title)"
+            >
+              {{ item.title }}
+            </h2>
+          </div>
         </div>
-        <v-btn class="btn-gray rounded-pill button elevation-0 bottom-72px">
+        <v-btn class="btn-gray rounded-pill button elevation-0 align-self-end bottom-72px">
           <span class="icon-16px">
             chat_bubble_outline
           </span>
